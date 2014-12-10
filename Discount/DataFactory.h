@@ -4,7 +4,6 @@
 
 using namespace std;
 
-typedef IData* (__stdcall *CreateDataFn)(void);
 
 class DataFactory
 {

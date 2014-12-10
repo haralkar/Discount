@@ -14,12 +14,12 @@ namespace DiscountTest
 		
 		TEST_METHOD(DataStorage)
 		{
-			LocalStorage storage;
+			LocalStorage<Client> storage;
 			Assert::IsTrue(true);
 		}
 		TEST_METHOD(LocalStorageGetShould)
 		{
-			LocalStorage storage;
+			LocalStorage<Client> storage;
 			Client* c = (Client*)storage.Get(storage.Client());
 			Assert::IsNotNull(c);
 			c->Free();
@@ -37,7 +37,7 @@ namespace DiscountTest
 		//*
 		TEST_METHOD(LocalStorageGetShouldReadData)
 		{
-			LocalStorage storage;
+			LocalStorage<Client> storage;
 			std::string main = "main";
 			Client* client = (Client*)storage.Get(storage.Client(), main);
 			Assert::AreEqual(main, client->Id());

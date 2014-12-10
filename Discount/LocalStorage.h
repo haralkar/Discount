@@ -5,15 +5,14 @@
 
 #include "Client.h"
 
-class LocalStorage : public IDataStorage
+template <class T>
+class LocalStorage : public IDataStorage<T>
 {
-protected:
-	//DataFactory factory_;
 public:
 	LocalStorage()
 	{
-		DataFactory* df = DataFactory::Get();
-		df->Register(Client(), Client::Create);
+		T t;
+		DataFactory::Get()->Register(t.DataTitle(), t.Creator());
 	}
 	//virtual ~LocalStorage();
 
@@ -22,3 +21,20 @@ public:
 	virtual IData* Get(std::string name, std::string id);
 };
 
+template <class T>
+inline IData* LocalStorage<T>::Get(std::string name)
+{
+	DataFactory* df = DataFactory::Get();
+	return df->CreateDataInstance(name);
+}
+template <class T>
+inline IData* LocalStorage<T>::Get(std::string name, std::string id)
+{
+	IData* d = Get(name);
+	if (!d)
+	{
+		return NULL;
+	}
+	d->SetId(id);
+	return d;
+}
