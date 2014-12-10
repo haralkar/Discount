@@ -6,14 +6,9 @@
 class IDataStorage
 {
 public:
+	const std::string Client() const { return "client"; }
 
-//	IDataStorage()
-//	{
-//	}
-
-//	~IDataStorage()
-//	{
-//	}
 	virtual IData* Get(std::string name) = 0;
+
 };
 

@@ -13,7 +13,7 @@ public:
 	LocalStorage()
 	{
 		DataFactory* df = DataFactory::Get();
-		df->Register("client", Client::Create);
+		df->Register(Client(), Client::Create);
 	}
 	//virtual ~LocalStorage();
 
