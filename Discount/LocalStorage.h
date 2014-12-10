@@ -16,21 +16,21 @@ public:
 	}
 	//virtual ~LocalStorage();
 
-	virtual IData* Get(std::string name);
+	virtual T* Get(std::string name);
 
-	virtual IData* Get(std::string name, std::string id);
+	virtual T* Get(std::string name, std::string id);
 };
 
 template <class T>
-inline IData* LocalStorage<T>::Get(std::string name)
+inline T* LocalStorage<T>::Get(std::string name)
 {
 	DataFactory* df = DataFactory::Get();
-	return df->CreateDataInstance(name);
+	return static_cast<T*>(df->CreateDataInstance(name));
 }
 template <class T>
-inline IData* LocalStorage<T>::Get(std::string name, std::string id)
+inline T* LocalStorage<T>::Get(std::string name, std::string id)
 {
-	IData* d = Get(name);
+	T* d = Get(name);
 	if (!d)
 	{
 		return NULL;
