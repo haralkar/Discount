@@ -35,8 +35,6 @@ namespace DiscountTest
 
 			Client& client2 = storage.Get(storage.Client(), main);
 			Assert::AreEqual(name, client2.Name());
-
 		}
-		// */
 	};
 }
