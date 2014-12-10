@@ -5,9 +5,10 @@
 
 #include "Client.h"
 
-//template <class T>
 class LocalStorage : public IDataStorage
 {
+protected:
+	//DataFactory factory_;
 public:
 	LocalStorage()
 	{
@@ -16,12 +17,8 @@ public:
 	}
 	//virtual ~LocalStorage();
 
-	virtual IData* Get(std::string name)
-	{
-		DataFactory* df = DataFactory::Get();
-		return df->CreateDataInstance(name);
-	}
-protected:
-	//DataFactory factory_;
+	virtual IData* Get(std::string name);
+
+	virtual IData* Get(std::string name, std::string id);
 };
 

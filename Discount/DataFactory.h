@@ -5,6 +5,7 @@
 using namespace std;
 
 typedef IData* (__stdcall *CreateDataFn)(void);
+
 class DataFactory
 {
 private:
@@ -12,7 +13,6 @@ private:
 	DataFactory(const DataFactory &) { }
 	DataFactory &operator=(const DataFactory &) { return *this; }
 
-	//typedef map FactoryMap;
 	map<string, CreateDataFn> FactoryMap_;
 public:
 	~DataFactory();
