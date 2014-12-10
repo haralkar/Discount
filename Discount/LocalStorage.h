@@ -1,4 +1,7 @@
 #pragma once
+#include <map>
+#include <memory>
+
 #include "IDataStorage.h"
 #include "IData.h"
 #include "DataFactory.h"
@@ -19,17 +22,26 @@ public:
 	virtual T& Get(std::string name);
 
 	virtual T& Get(std::string name, std::string id);
+protected:
+	map < std::string, T* > data_;
+
 };
 
 template <class T>
 inline T& LocalStorage<T>::Get(std::string name)
 {
 	DataFactory* df = DataFactory::Get();
-	return *(static_cast<T*>(df->CreateDataInstance(name)));
+	T* d = static_cast<T*>(df->CreateDataInstance(name));
+	data_[name] = d;
+	return *d;
 }
 template <class T>
 inline T& LocalStorage<T>::Get(std::string name, std::string id)
 {
+	auto it = data_.find(name);
+	if (it != data_.end())
+		return *it->second;
+
 	T& d = Get(name);
 	d.SetId(id);
 	return d;

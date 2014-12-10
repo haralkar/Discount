@@ -10,15 +10,20 @@ public:
 
 	void Free() { delete this; }
 
-	virtual std::string Id() { return name_; }
-	virtual void SetId(std::string id) { name_ = id; }
+	virtual std::string Id() { return id_; }
+	virtual void SetId(std::string id) { id_ = id; }
 
-	static IData * __stdcall Create() { return new Client(); }
+	virtual std::string Name() { return name_; }
+	virtual void SetName(std::string name) { name_ = name; }
+
+
+	static IData* __stdcall Create() { return new Client(); }
 	virtual CreateDataFn Creator() const { return Create; }
+
 	virtual std::string DataTitle() const final { return "client"; }
 
 private:
-
+	std::string id_;
 	std::string name_;
 };
 

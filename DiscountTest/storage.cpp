@@ -21,27 +21,21 @@ namespace DiscountTest
 		{
 			LocalStorage<Client> storage;
 			Client& c = storage.Get(storage.Client());
-			//Assert::IsNotNull(c);
-			//c->Free();
 		}
-/*
-		TEST_METHOD(StorageShouldSupplyIterator)
-		{
-			LocalStorage storage;
-			Client* c = (Client*)storage.Get("client");
-			Assert::IsNotNull(c);
-			auto reader = storage.GetReader("client");
-			c->Free();
-		}
-		// */
-		//*
 		TEST_METHOD(LocalStorageGetShouldReadData)
 		{
 			LocalStorage<Client> storage;
+
 			std::string main = "main";
 			Client& client = storage.Get(storage.Client(), main);
 			Assert::AreEqual(main, client.Id());
-			//client->Free();
+			
+			std::string name("Name");
+			client.SetName(name);
+
+			Client& client2 = storage.Get(storage.Client(), main);
+			Assert::AreEqual(name, client2.Name());
+
 		}
 		// */
 	};
