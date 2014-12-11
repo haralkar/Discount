@@ -25,7 +25,8 @@ public:
 	virtual int Amount();
 	virtual void SetAmount(int p);
 
-	virtual int Price();
+	virtual int CalculatePrice();
+	virtual int Price() const;
 
 private:
 	std::string id_;

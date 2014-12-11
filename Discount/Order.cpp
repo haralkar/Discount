@@ -63,7 +63,11 @@ void Order::SetAmount(int amount)
 	amount_ = amount;
 }
 
-int Order::Price()
+int Order::CalculatePrice() 
 {
-	return 0;
+	return 0;// price_*amount_;
+}
+int Order::Price() const
+{
+	return 0;// price_*amount_;
 }

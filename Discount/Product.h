@@ -8,20 +8,20 @@ public:
 	virtual ~Product();
 	void Free() { delete this; }
 
-	virtual std::string Id() { return id_; }
-	virtual void SetId(std::string id) { id_ = id; }
+	virtual std::string Id();
+	virtual void SetId(std::string id);
 
-	virtual std::string Name() { return name_; }
-	virtual void SetName(std::string name) { name_ = name; }
+	virtual std::string Name();
+	virtual void SetName(std::string name);
 
-	virtual int Price() { return price_; }
-	virtual void SetPrice(int price) { price_ = price; }
+	virtual int Price();
+	virtual void SetPrice(int price);
 
 
-	static IData* __stdcall Create() { return new Product(); }
-	virtual CreateDataFn Creator() const { return Create; }
+	static IData* __stdcall Create();
+	virtual CreateDataFn Creator() const;
 
-	virtual std::string DataTitle() const final { return "product"; }
+	virtual std::string DataTitle() const final;
 
 private:
 	std::string id_;
