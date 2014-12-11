@@ -14,7 +14,7 @@ namespace DiscountTest
 	TEST_CLASS(TestStorageHousing)
 	{
 	public:
-		TEST_METHOD(Stuff)
+		TEST_METHOD(TestHousing)
 		{
 			auto storage = new LocalStorage<Client> ;
 			StorageHousing::Get()->Store(storage);
@@ -28,7 +28,7 @@ namespace DiscountTest
 			Assert::AreEqual(name, cr.Name());
 		}
 	};
-	TEST_CLASS(Discount)
+	TEST_CLASS(TestStorage)
 	{
 	public:
 		LocalStorage<Client> storage;

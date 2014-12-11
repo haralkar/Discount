@@ -50,14 +50,6 @@ namespace DiscountTest
 			product.SetName(productId);
 			product.SetPrice(100);
 
-			/*
-			rebateId = "flat";
-			Rebate& rebate = rebateStorage.Get(rebateId);
-			rebate.SetName("Some percent");
-			rebate.SetPercent(flatRebate);
-			rebate.SetClient(clientId);
-			rebate.SetProduct(productId);
-			// */
 
 			orderId = "100";
 			Order& order = orderStorage.Get(orderId);
@@ -65,6 +57,16 @@ namespace DiscountTest
 			order.SetClient(clientId);
 			order.SetProduct(productId);
 			// */
+
+		}
+		void AddRebate()
+		{
+			rebateId = "flat";
+			Rebate& rebate = rebateStorage.Get(rebateId);
+			rebate.SetName("Some percent");
+			rebate.SetPercent(flatRebate);
+			rebate.SetClient(clientId);
+			rebate.SetProduct(productId);
 
 		}
 		TEST_METHOD_CLEANUP(Cleanup)
@@ -77,11 +79,17 @@ namespace DiscountTest
 			// */
 
 		}
-		//*
 		TEST_METHOD(CalculateFullPrice)
 		{
 			Order& order = orderStorage.Get(orderId);
 			Assert::AreEqual(fullPrice, order.CalculatePrice());
+		}
+		/*
+		TEST_METHOD(CalculateRebatePrice)
+		{
+			Order& order = orderStorage.Get(orderId);
+			AddRebate();
+			Assert::AreEqual(finalRebatePrice, order.CalculatePrice());
 		}
 		// */
 	};

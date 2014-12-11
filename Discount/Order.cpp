@@ -3,6 +3,7 @@
 
 #include "Client.h"
 #include "Product.h"
+#include "Rebate.h"
 #include "StorageFactory.h"
 
 Order::Order()
@@ -66,10 +67,8 @@ void Order::SetAmount(int amount)
 
 int Order::CalculatePrice() 
 {
-	// Get the product:
-//	auto sh = StorageHousing::Get();
-	//auto products = sh->Retrieve<Product>();
 	auto products = StorageHousing::Get()->Retrieve<Product>();
+	auto rebates = StorageHousing::Get()->Retrieve<Rebate>();
 	//auto retrieved = StorageHousing::Get()->Retrieve<Client>();
 	auto product = products->Get(ProductId());
 
