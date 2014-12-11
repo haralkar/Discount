@@ -12,7 +12,15 @@ namespace DiscountTest
 	TEST_CLASS(Discount)
 	{
 	public:
-		
+		LocalStorage<Client> storage;
+		TEST_METHOD_INITIALIZE(Init)
+		{
+
+		}
+		TEST_METHOD_CLEANUP(Cleanup)
+		{
+			storage.Cleanup();
+		}
 		TEST_METHOD(DataStorage)
 		{
 			LocalStorage<Client> storage;
@@ -21,14 +29,11 @@ namespace DiscountTest
 		}
 		TEST_METHOD(LocalStorageGetShould)
 		{
-			LocalStorage<Client> storage;
 			Client& c = storage.Get(storage.Client());
-			storage.Cleanup();
+			Assert::IsTrue(true);
 		}
 		TEST_METHOD(LocalStorageGetShouldKeepData)
 		{
-			LocalStorage<Client> storage;
-
 			std::string main = "main";
 			Client& client = storage.Get(storage.Client(), main);
 			Assert::AreEqual(main, client.Id());
@@ -38,7 +43,6 @@ namespace DiscountTest
 
 			Client& client2 = storage.Get(storage.Client(), main);
 			Assert::AreEqual(name, client2.Name());
-			storage.Cleanup();
 		}
 		TEST_METHOD(PersistencyInAllThings)
 		{
