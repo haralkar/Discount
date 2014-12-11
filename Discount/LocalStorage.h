@@ -21,6 +21,8 @@ public:
 
 	//virtual ~LocalStorage();
 
+	virtual T& Get();
+
 	virtual T& Get(std::string name);
 
 	virtual T& Get(std::string name, std::string id);
@@ -31,6 +33,12 @@ protected:
 template<class T>
 map < std::string, T*> LocalStorage<T>::data_;
 
+template <class T>
+inline T& LocalStorage<T>::Get()
+{
+	T t;
+	return Get(t.DataTitle());
+}
 template <class T>
 inline T& LocalStorage<T>::Get(std::string name)
 {

@@ -50,7 +50,8 @@ namespace DiscountTest
 			{
 				LocalStorage<Rebate> storage;
 
-				Rebate& rebate = storage.Get("rebate", "tenFlat");
+				Rebate& rebate = storage.Get();
+				rebate.SetId("tenFlat");
 				rebate.SetName("Ten percent");
 				rebate.SetProcent(10);
 			}
