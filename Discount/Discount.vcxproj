@@ -79,6 +79,7 @@
     <ClInclude Include="IData.h" />
     <ClInclude Include="IDataStorage.h" />
     <ClInclude Include="LocalStorage.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Rebate.h" />
     <ClInclude Include="stdafx.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="DataFactory.cpp" />
     <ClCompile Include="LocalStorage.cpp" />
+    <ClCompile Include="Order.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Rebate.cpp" />
     <ClCompile Include="stdafx.cpp">

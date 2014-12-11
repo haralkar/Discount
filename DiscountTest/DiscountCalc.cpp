@@ -31,15 +31,16 @@ namespace DiscountTest
 		}
 		TEST_METHOD_CLEANUP(Cleanup)
 		{
-			/*
+			//*
 			clientStorage.Cleanup();
 			productStorage.Cleanup();
 			rebateStorage.Cleanup();
 			// */
 
 		}
-		TEST_METHOD(PersistencyInAllThings)
+		TEST_METHOD(CalculateFinalPrice)
 		{
+
 		}
 	};
 }
