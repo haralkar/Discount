@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "Order.h"
 
+#include "Client.h"
+#include "Product.h"
+#include "StorageFactory.h"
 
 Order::Order()
 {
 }
-
-
 Order::~Order()
 {
 }
@@ -36,7 +37,7 @@ void Order::SetId(std::string id)
 	id_ = id;
 }
 
-std::string Order::Product()
+std::string Order::ProductId()
 {
 	return product_;
 }
@@ -45,7 +46,7 @@ void Order::SetProduct(std::string product)
 	product_ = product;
 }
 
-std::string Order::Client()
+std::string Order::ClientId()
 {
 	return client_;
 }
@@ -65,7 +66,14 @@ void Order::SetAmount(int amount)
 
 int Order::CalculatePrice() 
 {
-	return 0;// price_*amount_;
+	// Get the product:
+//	auto sh = StorageHousing::Get();
+	//auto products = sh->Retrieve<Product>();
+	auto products = StorageHousing::Get()->Retrieve<Product>();
+	//auto retrieved = StorageHousing::Get()->Retrieve<Client>();
+	auto product = products->Get(ProductId());
+
+	return product.Price() * amount_;
 }
 int Order::Price() const
 {

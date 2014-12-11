@@ -27,6 +27,7 @@ public:
 		initialised_ = false; 
 	}
 
+	virtual std::string DataTitle() { return dataTitle_; }
 
 	virtual T& Get(std::string id);
 protected:

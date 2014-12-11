@@ -5,10 +5,29 @@
 #include "Rebate.h"
 #include "LocalStorage.h"
 #include "DataFactory.h"
+#include "StorageFactory.h"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace DiscountTest
 {		
+	TEST_CLASS(TestStorageHousing)
+	{
+	public:
+		TEST_METHOD(Stuff)
+		{
+			auto storage = new LocalStorage<Client> ;
+			StorageHousing::Get()->Store(storage);
+			Client& client = storage->Get("some");
+			std::string name("Name");
+			client.SetName(name);
+
+			auto retrieved = StorageHousing::Get()->Retrieve<Client>();
+			Client& cr = retrieved->Get("some");
+
+			Assert::AreEqual(name, cr.Name());
+		}
+	};
 	TEST_CLASS(Discount)
 	{
 	public:
@@ -29,7 +48,7 @@ namespace DiscountTest
 		}
 		TEST_METHOD(LocalStorageGetShould)
 		{
-			Client& c = storage.Get(storage.Client());
+			Client& c = storage.Get("some");
 			Assert::IsTrue(true);
 		}
 		TEST_METHOD(LocalStorageGetShouldKeepData)

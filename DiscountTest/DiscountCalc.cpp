@@ -8,6 +8,8 @@
 
 #include "LocalStorage.h"
 #include "DataFactory.h"
+#include "StorageFactory.h"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace DiscountTest
@@ -34,6 +36,10 @@ namespace DiscountTest
 
 		TEST_METHOD_INITIALIZE(Init)
 		{
+			//StorageHousing::Get()->Store(&clientStorage);
+			//StorageHousing::Get()->Store(&rebateStorage);
+			StorageHousing::Get()->Store(&productStorage);
+
 			//*
 			clientId = "mainclient";
 			Client& client = clientStorage.Get(clientId);
@@ -71,7 +77,7 @@ namespace DiscountTest
 			// */
 
 		}
-		/*
+		//*
 		TEST_METHOD(CalculateFullPrice)
 		{
 			Order& order = orderStorage.Get(orderId);

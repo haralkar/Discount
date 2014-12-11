@@ -16,10 +16,10 @@ public:
 	virtual std::string Id();
 	virtual void SetId(std::string id);
 
-	virtual std::string Product();
+	virtual std::string ProductId();
 	virtual void SetProduct(std::string name);
 
-	virtual std::string Client();
+	virtual std::string ClientId();
 	virtual void SetClient(std::string);
 
 	virtual int Amount();
