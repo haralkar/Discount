@@ -37,7 +37,7 @@ namespace DiscountTest
 		TEST_METHOD_INITIALIZE(Init)
 		{
 			//StorageHousing::Get()->Store(&clientStorage);
-			//StorageHousing::Get()->Store(&rebateStorage);
+			StorageHousing::Get()->Store(&rebateStorage);
 			StorageHousing::Get()->Store(&productStorage);
 
 			//*
@@ -84,7 +84,7 @@ namespace DiscountTest
 			Order& order = orderStorage.Get(orderId);
 			Assert::AreEqual(fullPrice, order.CalculatePrice());
 		}
-		/*
+		//*
 		TEST_METHOD(CalculateRebatePrice)
 		{
 			Order& order = orderStorage.Get(orderId);

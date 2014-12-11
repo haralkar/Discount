@@ -67,12 +67,30 @@ void Order::SetAmount(int amount)
 
 int Order::CalculatePrice() 
 {
-	auto products = StorageHousing::Get()->Retrieve<Product>();
-	auto rebates = StorageHousing::Get()->Retrieve<Rebate>();
 	//auto retrieved = StorageHousing::Get()->Retrieve<Client>();
+	auto products = StorageHousing::Get()->Retrieve<Product>();
 	auto product = products->Get(ProductId());
 
-	return product.Price() * amount_;
+	auto rebates = StorageHousing::Get()->Retrieve<Rebate>();
+	// find first rebate:
+	bool hasRebate = false;
+	int rebate = 0;
+	for (const auto& r : rebates->All())
+	{
+		if (r.second->Client() == ClientId() && r.second->Product() == ProductId())
+		{
+			rebate = r.second->Percent();
+			hasRebate = true;
+			break;
+		}
+	}
+	int price_ = product.Price() * amount_;
+	if (hasRebate)
+	{
+		price_ -= (int)(rebate / 100.0 * price_);
+	}
+
+	return price_;
 }
 int Order::Price() const
 {

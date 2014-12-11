@@ -22,7 +22,8 @@ public:
 			initialised_ = true;
 		}
 	}
-	void Cleanup(){ 
+	void Cleanup()
+	{ 
 		data_.clear(); 
 		initialised_ = false; 
 	}
@@ -30,6 +31,8 @@ public:
 	virtual std::string DataTitle() { return dataTitle_; }
 
 	virtual T& Get(std::string id);
+	virtual map<std::string, T*>& All() const ;
+
 protected:
 	virtual T& NewData(std::string id);
 
@@ -64,3 +67,11 @@ inline T& LocalStorage<T>::Get(std::string id)
 	T& d = NewData(id);
 	return d;
 }
+//*
+template <class T>
+inline map<std::string, T*>& LocalStorage<T>::All() const
+{
+	return data_;
+}
+
+// */
