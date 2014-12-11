@@ -90,10 +90,11 @@ namespace DiscountTest
 			AddRebate();
 			Assert::AreEqual(finalRebatePrice, order.CalculatePrice());
 		}
-		TEST_METHOD(CheckRebatePrice)
+		TEST_METHOD(CheckPrice)
 		{
 			AddRebate();
 			Order& order = orderStorage.Get(orderId);
+			order.SetPrice();
 			Assert::AreEqual(finalRebatePrice, order.Price());
 		}
 		//*
