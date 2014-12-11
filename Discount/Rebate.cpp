@@ -48,13 +48,13 @@ void Rebate::SetName(std::string name)
 	name_ = name; 
 }
 
-int Rebate::Procent() 
+int Rebate::Percent() 
 {
-	return proCent_;
+	return perCent_;
 }
-void Rebate::SetProcent(int p)
+void Rebate::SetPercent(int p)
 {
-	proCent_ = p;
+	perCent_ = p;
 }
 
 std::string Rebate::Client()

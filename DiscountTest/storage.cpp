@@ -71,13 +71,13 @@ namespace DiscountTest
 
 				Rebate& rebate = storage.Get("tenFlat");
 				rebate.SetName("Ten percent");
-				rebate.SetProcent(10);
+				rebate.SetPercent(10);
 			}
 			{
 				LocalStorage<Rebate> storage;
 
 				Rebate& rebate = storage.Get("tenFlat");
-				Assert::AreEqual(10, rebate.Procent());
+				Assert::AreEqual(10, rebate.Percent());
 			}
 			storageToCleanUp.Cleanup();
 		}

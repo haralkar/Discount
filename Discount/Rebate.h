@@ -18,8 +18,8 @@ public:
 	virtual std::string Name();
 	virtual void SetName(std::string name);
 
-	virtual int Procent();
-	virtual void SetProcent(int p);
+	virtual int Percent();
+	virtual void SetPercent(int p);
 
 	virtual std::string Client();
 	virtual void SetClient(std::string );
@@ -33,6 +33,6 @@ private:
 	std::string name_;
 	std::string client_;
 	std::string product_;
-	int proCent_;
+	int perCent_;
 };
 

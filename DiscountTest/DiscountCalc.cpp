@@ -21,10 +21,10 @@ namespace DiscountTest
 		
 		TEST_METHOD_INITIALIZE(Init)
 		{
-			/*
-			Rebate& rebate = rebateStorage.Get("rebate", "tenFlat");
+			//*
+			Rebate& rebate = rebateStorage.Get("tenFlat");
 			rebate.SetName("Ten percent");
-			rebate.SetProcent(10);
+			rebate.SetPercent(10);
 			
 			// */
 
