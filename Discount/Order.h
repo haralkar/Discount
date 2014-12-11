@@ -13,19 +13,20 @@ public:
 	virtual std::string DataTitle() const final;
 
 
-	virtual std::string Id();
+	virtual std::string Id() const;
 	virtual void SetId(std::string id);
 
-	virtual std::string ProductId();
+	virtual std::string ProductId() const ;
 	virtual void SetProduct(std::string name);
 
-	virtual std::string ClientId();
+	virtual std::string ClientId() const;
 	virtual void SetClient(std::string);
 
-	virtual int Amount();
+	virtual int Amount() const;
 	virtual void SetAmount(int p);
 
-	virtual int CalculatePrice();
+	virtual void SetPrice();
+	virtual int CalculatePrice() const;
 	virtual int Price() const;
 
 private:

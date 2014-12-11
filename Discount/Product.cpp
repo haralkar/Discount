@@ -11,7 +11,7 @@ Product::~Product()
 {
 }
 
-std::string Product::Id() 
+std::string Product::Id() const
 { 
 	return id_; 
 }
@@ -20,7 +20,7 @@ void Product::SetId(std::string id)
 	id_ = id; 
 }
 
-std::string Product::Name() 
+std::string Product::Name()  const
 { 
 	return name_; 
 }
@@ -29,7 +29,7 @@ void Product::SetName(std::string name)
 	name_ = name; 
 }
 
-int Product::Price() 
+int Product::Price() const
 { 
 	return price_; 
 }

@@ -1,5 +1,8 @@
 #pragma once
 #include "IData.h"
+#include "Order.h"
+#include "Product.h"
+
 class Rebate : public IData
 {
 public:
@@ -12,20 +15,22 @@ public:
 	virtual std::string DataTitle() const final;
 
 
-	virtual std::string Id();
+	virtual std::string Id() const;
 	virtual void SetId(std::string id);
 
-	virtual std::string Name();
+	virtual std::string Name() const ;
 	virtual void SetName(std::string name);
 
-	virtual int Percent();
+	virtual int Percent() const;
 	virtual void SetPercent(int p);
 
-	virtual std::string Client();
+	virtual int RebateAmount(const Order&, const Product& ) const;
+
+	virtual std::string Client() const;
 	virtual void SetClient(std::string );
 
-	virtual std::string Product();
-	virtual void SetProduct(std::string);
+	virtual std::string ProductId() const ;
+	virtual void SetProductId(std::string);
 
 
 private:

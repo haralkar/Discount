@@ -29,7 +29,7 @@ std::string Order::DataTitle() const
 }
 
 
-std::string Order::Id()
+std::string Order::Id() const
 {
 	return id_;
 }
@@ -38,7 +38,7 @@ void Order::SetId(std::string id)
 	id_ = id;
 }
 
-std::string Order::ProductId()
+std::string Order::ProductId() const
 {
 	return product_;
 }
@@ -47,7 +47,7 @@ void Order::SetProduct(std::string product)
 	product_ = product;
 }
 
-std::string Order::ClientId()
+std::string Order::ClientId() const
 {
 	return client_;
 }
@@ -56,7 +56,7 @@ void Order::SetClient(std::string client)
 	client_ = client;
 }
 
-int Order::Amount()
+int Order::Amount() const
 {
 	return amount_;
 }
@@ -65,34 +65,31 @@ void Order::SetAmount(int amount)
 	amount_ = amount;
 }
 
-int Order::CalculatePrice() 
+int Order::CalculatePrice() const
 {
-	//auto retrieved = StorageHousing::Get()->Retrieve<Client>();
 	auto products = StorageHousing::Get()->Retrieve<Product>();
 	auto product = products->Get(ProductId());
 
 	auto rebates = StorageHousing::Get()->Retrieve<Rebate>();
-	// find first rebate:
-	bool hasRebate = false;
-	int rebate = 0;
+
+	int price = product.Price() * amount_;
 	for (const auto& r : rebates->All())
 	{
-		if (r.second->Client() == ClientId() && r.second->Product() == ProductId())
+		if (r.second->Client() == ClientId() && r.second->ProductId() == ProductId())
 		{
-			rebate = r.second->Percent();
-			hasRebate = true;
+			int rebate = r.second->RebateAmount(*this, product);
+			price -= rebate;
 			break;
 		}
 	}
-	int price_ = product.Price() * amount_;
-	if (hasRebate)
-	{
-		price_ -= (int)(rebate / 100.0 * price_);
-	}
-
-	return price_;
+	return price;
 }
+void Order::SetPrice()
+{
+	price_ = CalculatePrice();
+}
+
 int Order::Price() const
 {
-	return 0;// price_*amount_;
+	return price_;
 }

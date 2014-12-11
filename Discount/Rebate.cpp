@@ -30,7 +30,7 @@ void Rebate::Free()
 	delete this; 
 }
 
-std::string Rebate::Id() 
+std::string Rebate::Id() const
 { 
 	return id_; 
 }
@@ -39,7 +39,7 @@ void Rebate::SetId(std::string id)
 	id_ = id; 
 }
 
-std::string Rebate::Name() 
+std::string Rebate::Name() const
 { 
 	return name_; 
 }
@@ -48,7 +48,7 @@ void Rebate::SetName(std::string name)
 	name_ = name; 
 }
 
-int Rebate::Percent() 
+int Rebate::Percent() const
 {
 	return perCent_;
 }
@@ -56,8 +56,12 @@ void Rebate::SetPercent(int p)
 {
 	perCent_ = p;
 }
+int Rebate::RebateAmount(const Order&order, const Product& product ) const
+{
+	return (int)(order.Amount() * product.Price() * Percent()/100.0);
+}
 
-std::string Rebate::Client()
+std::string Rebate::Client() const
 {
 	return client_;
 }
@@ -65,11 +69,11 @@ void Rebate::SetClient(std::string client)
 {
 	client_ = client;
 }
-std::string Rebate::Product()
+std::string Rebate::ProductId() const
 {
 	return product_;
 }
-void Rebate::SetProduct(std::string product)
+void Rebate::SetProductId(std::string product)
 {
 	product_ = product;
 }

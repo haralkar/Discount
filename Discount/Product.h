@@ -8,13 +8,13 @@ public:
 	virtual ~Product();
 	void Free() { delete this; }
 
-	virtual std::string Id();
+	virtual std::string Id() const;
 	virtual void SetId(std::string id);
 
-	virtual std::string Name();
+	virtual std::string Name() const;
 	virtual void SetName(std::string name);
 
-	virtual int Price();
+	virtual int Price() const;
 	virtual void SetPrice(int price);
 
 

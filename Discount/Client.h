@@ -10,7 +10,7 @@ public:
 
 	void Free() { delete this; }
 
-	virtual std::string Id() { return id_; }
+	virtual std::string Id() const { return id_; }
 	virtual void SetId(std::string id) { id_ = id; }
 
 	virtual std::string Name() { return name_; }
