@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiscountTest", "DiscountTes
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Discount", "Discount\Discount.vcxproj", "{89D93FE4-A07C-4980-9551-359BFF90AFFC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalculateDiscounts", "CalculateDiscounts\CalculateDiscounts.vcxproj", "{568FCCA8-FF37-4864-805B-475C56D6963D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,10 @@ Global
 		{89D93FE4-A07C-4980-9551-359BFF90AFFC}.Debug|Win32.Build.0 = Debug|Win32
 		{89D93FE4-A07C-4980-9551-359BFF90AFFC}.Release|Win32.ActiveCfg = Release|Win32
 		{89D93FE4-A07C-4980-9551-359BFF90AFFC}.Release|Win32.Build.0 = Release|Win32
+		{568FCCA8-FF37-4864-805B-475C56D6963D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{568FCCA8-FF37-4864-805B-475C56D6963D}.Debug|Win32.Build.0 = Debug|Win32
+		{568FCCA8-FF37-4864-805B-475C56D6963D}.Release|Win32.ActiveCfg = Release|Win32
+		{568FCCA8-FF37-4864-805B-475C56D6963D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

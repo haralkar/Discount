@@ -11,6 +11,7 @@ class IDataStorage
 public:
 	virtual map<string, T*>& All() const = 0 ;
 	virtual T& Get(string id) = 0;
+	virtual string DataTitle() = 0;
 
 };
 
