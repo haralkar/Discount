@@ -37,12 +37,31 @@ namespace DiscountTest
 			std::string main = "main";
 			Client& client = storage.Get(storage.Client(), main);
 			Assert::AreEqual(main, client.Id());
-			
+
 			std::string name("Name");
 			client.SetName(name);
 
 			Client& client2 = storage.Get(storage.Client(), main);
 			Assert::AreEqual(name, client2.Name());
+		}
+		TEST_METHOD(LocalStorageGetShouldKeepMoreData)
+		{
+			std::string main = "main";
+			std::string other = "other";
+
+			Client& client1 = storage.Get(storage.Client(), main);
+			Client& client2 = storage.Get(storage.Client(), other);
+			
+			Assert::AreEqual(main, client1.Id());
+			Assert::AreEqual(other, client2.Id());
+
+			std::string name("Name");
+			std::string otherName("Other");
+			client1.SetName(name);
+			client2.SetName(other);
+
+			Client& clientAgain = storage.Get(storage.Client(), main);
+			Assert::AreEqual(name, clientAgain.Name());
 		}
 		TEST_METHOD(PersistencyInAllThings)
 		{
@@ -50,8 +69,7 @@ namespace DiscountTest
 			{
 				LocalStorage<Rebate> storage;
 
-				Rebate& rebate = storage.Get();
-				rebate.SetId("tenFlat");
+				Rebate& rebate = storage.Get("rebate", "tenFlat");
 				rebate.SetName("Ten percent");
 				rebate.SetProcent(10);
 			}
