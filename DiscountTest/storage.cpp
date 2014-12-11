@@ -35,13 +35,13 @@ namespace DiscountTest
 		TEST_METHOD(LocalStorageGetShouldKeepData)
 		{
 			std::string main = "main";
-			Client& client = storage.Get(storage.Client(), main);
+			Client& client = storage.Get(main);
 			Assert::AreEqual(main, client.Id());
 
 			std::string name("Name");
 			client.SetName(name);
 
-			Client& client2 = storage.Get(storage.Client(), main);
+			Client& client2 = storage.Get(main);
 			Assert::AreEqual(name, client2.Name());
 		}
 		TEST_METHOD(LocalStorageGetShouldKeepMoreData)
@@ -49,8 +49,8 @@ namespace DiscountTest
 			std::string main = "main";
 			std::string other = "other";
 
-			Client& client1 = storage.Get(storage.Client(), main);
-			Client& client2 = storage.Get(storage.Client(), other);
+			Client& client1 = storage.Get(main);
+			Client& client2 = storage.Get(other);
 			
 			Assert::AreEqual(main, client1.Id());
 			Assert::AreEqual(other, client2.Id());
@@ -60,7 +60,7 @@ namespace DiscountTest
 			client1.SetName(name);
 			client2.SetName(other);
 
-			Client& clientAgain = storage.Get(storage.Client(), main);
+			Client& clientAgain = storage.Get(main);
 			Assert::AreEqual(name, clientAgain.Name());
 		}
 		TEST_METHOD(PersistencyInAllThings)
@@ -69,14 +69,14 @@ namespace DiscountTest
 			{
 				LocalStorage<Rebate> storage;
 
-				Rebate& rebate = storage.Get("rebate", "tenFlat");
+				Rebate& rebate = storage.Get("tenFlat");
 				rebate.SetName("Ten percent");
 				rebate.SetProcent(10);
 			}
 			{
 				LocalStorage<Rebate> storage;
 
-				Rebate& rebate = storage.Get("rebate", "tenFlat");
+				Rebate& rebate = storage.Get("tenFlat");
 				Assert::AreEqual(10, rebate.Procent());
 			}
 			storageToCleanUp.Cleanup();

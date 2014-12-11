@@ -27,10 +27,11 @@ public:
 		initialised_ = false; 
 	}
 
-	virtual T& Get(std::string name);
 
-	virtual T& Get(std::string name, std::string id);
+	virtual T& Get(std::string id);
 protected:
+	virtual T& NewData(std::string id);
+
 	static map < std::string, T* > data_;
 	static std::string dataTitle_;
 	static bool initialised_;
@@ -44,7 +45,7 @@ template<class T>
 std::string LocalStorage<T>::dataTitle_;
 
 template <class T>
-inline T& LocalStorage<T>::Get(std::string id)
+inline T& LocalStorage<T>::NewData(std::string id)
 {
 	DataFactory* df = DataFactory::Get();
 	T* d = static_cast<T*>(df->CreateDataInstance(dataTitle_));
@@ -53,12 +54,12 @@ inline T& LocalStorage<T>::Get(std::string id)
 	return *d;
 }
 template <class T>
-inline T& LocalStorage<T>::Get(std::string , std::string id)
+inline T& LocalStorage<T>::Get(std::string id)
 {
 	auto it = data_.find(id);
 	if (it != data_.end())
 		return *it->second;
 
-	T& d = Get(id);
+	T& d = NewData(id);
 	return d;
 }
