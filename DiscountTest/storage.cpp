@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 
 #include "Client.h"
+#include "Rebate.h"
 #include "LocalStorage.h"
 #include "DataFactory.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -16,13 +17,15 @@ namespace DiscountTest
 		{
 			LocalStorage<Client> storage;
 			Assert::IsTrue(true);
+			storage.Cleanup();
 		}
 		TEST_METHOD(LocalStorageGetShould)
 		{
 			LocalStorage<Client> storage;
 			Client& c = storage.Get(storage.Client());
+			storage.Cleanup();
 		}
-		TEST_METHOD(LocalStorageGetShouldReadData)
+		TEST_METHOD(LocalStorageGetShouldKeepData)
 		{
 			LocalStorage<Client> storage;
 
@@ -35,6 +38,25 @@ namespace DiscountTest
 
 			Client& client2 = storage.Get(storage.Client(), main);
 			Assert::AreEqual(name, client2.Name());
+			storage.Cleanup();
+		}
+		TEST_METHOD(PersistencyInAllThings)
+		{
+			LocalStorage<Rebate> storageToCleanUp;
+			{
+				LocalStorage<Rebate> storage;
+
+				Rebate& rebate = storage.Get("rebate", "tenFlat");
+				rebate.SetName("Ten percent");
+				rebate.SetProcent(10);
+			}
+			{
+				LocalStorage<Rebate> storage;
+
+				Rebate& rebate = storage.Get("rebate", "tenFlat");
+				Assert::AreEqual(10, rebate.Procent());
+			}
+			storageToCleanUp.Cleanup();
 		}
 	};
 }

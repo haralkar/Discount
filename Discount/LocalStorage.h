@@ -17,15 +17,19 @@ public:
 		T t;
 		DataFactory::Get()->Register(t.DataTitle(), t.Creator());
 	}
+	void Cleanup(){ data_.clear();}
+
 	//virtual ~LocalStorage();
 
 	virtual T& Get(std::string name);
 
 	virtual T& Get(std::string name, std::string id);
 protected:
-	map < std::string, T* > data_;
+	static map < std::string, T* > data_;
 
 };
+template<class T>
+map < std::string, T*> LocalStorage<T>::data_;
 
 template <class T>
 inline T& LocalStorage<T>::Get(std::string name)
