@@ -30,3 +30,6 @@ Implementation knowledge is isolated at the same two points:
 * **StorageHousing** keeps track of the database access point. 
 * **DataFactory** creates new instances of the above data objects, then uses **StorageHousing** to store the data.
 
+External source code
+--------------------
+Factory pattern was adapted from [Cale Dunlap](http://www.codeproject.com/Articles/363338/Factory-Pattern-in-Cplusplus)'s implementation.
