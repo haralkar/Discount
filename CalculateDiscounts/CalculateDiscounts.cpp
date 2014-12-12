@@ -3,7 +3,8 @@
 
 #include "stdafx.h"
 
-#include "string"
+#include <string>
+#include <iostream>
 
 #include "LocalStorage.h"
 #include "Client.h"
@@ -70,10 +71,14 @@ void addRebate(char* list[], int percents[])
 	{
 		auto id = string(*list); list++;
 		auto name = string(*list); list++;
+		auto client = string(*list); list++;
+		auto product = string(*list); list++;
 		int percent = percents[i++];
 
 		Rebate& p = rebates->Get(id);
 		p.SetName(name);
+		p.SetClient(client);
+		p.SetProductId(product);
 		p.SetPercent(percent);
 	}
 }
@@ -84,10 +89,12 @@ void addOrders(char* list[], int amounts[])
 	while (*list)
 	{
 		auto id = string(*list); list++;
+		auto client = string(*list); list++;
 		auto name = string(*list); list++;
 		int amount = amounts[i++];
 
 		Order& p = orders->Get(id);
+		p.SetClient(client);
 		p.SetProduct(name);
 		p.SetAmount(amount);
 	}
@@ -100,11 +107,11 @@ void addData()
 	char* productlist[] = { "1", "Chair", "2", "Table", "3", "Stool", nullptr };
 	int prices[] = { 100, 1000, 50 };
 	addProducts(productlist, prices);
-	char* rebatelist[] = { "1", "Flat50", "1", "1", "2", "simple10", "1", "2", "3", "lowerStool" , nullptr };
+	char* rebatelist[] = { "1", "Flat50", "1", "1",  "2", "simple10", "1", "2",  "3", "StoolDisc", "2", "3", nullptr };
 	int percent[] = { 50, 10, 5 };
 	addRebate(rebatelist, percent);
 	// id,client,product,
-	char* orderlist[] = { "1", "1", "1", "2", "1", "2", "3", "2", "3", nullptr };
+	char* orderlist[] = { "1", "1", "2",  "2", "1", "1",  "3", "2", "3", nullptr };
 	int amount[] = { 1, 6, 2 };
 	addOrders(orderlist, amount);
 
@@ -117,9 +124,13 @@ void SetupData()
 void PrintOrderList()
 {
 	auto orders = StorageHousing::Get()->Retrieve<Order>();
-	for (const auto& order : orders->All())
+	for (const auto& theOrder : orders->All())
 	{
-		;
+		Order& order = *theOrder.second;
+		Client& client = clientStorage->Get(order.ClientId());
+		Product& product = productStorage->Get(order.ProductId());
+		order.SetPrice();
+		cout << "Order from " << client.Name() << " Product " << order.Amount() << "x " << product.Name() << " price " << order.Price() << endl;
 	}
 
 }
