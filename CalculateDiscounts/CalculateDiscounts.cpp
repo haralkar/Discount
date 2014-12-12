@@ -124,12 +124,15 @@ void SetupData()
 void PrintOrderList()
 {
 	auto orders = StorageHousing::Get()->Retrieve<Order>();
+	auto clients = StorageHousing::Get()->Retrieve<Client>();
+	auto products = StorageHousing::Get()->Retrieve<Product>();
 	for (const auto& theOrder : orders->All())
 	{
 		Order& order = *theOrder.second;
-		Client& client = clientStorage->Get(order.ClientId());
-		Product& product = productStorage->Get(order.ProductId());
 		order.SetPrice();
+
+		Client& client = clients->Get(order.ClientId());
+		Product& product = products->Get(order.ProductId());
 		cout << "Order from " << client.Name() << " Product " << order.Amount() << "x " << product.Name() << " price " << order.Price() << endl;
 	}
 
