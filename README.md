@@ -3,6 +3,9 @@ Discount
 Demonstration of C++ classes to calculate discount of product to be sold to customers, at some discount.
 Current implementation uses in memory storage without any persistence.
 
+Design idea:
+![Data and Storage Isolation](https://github.com/haralkar/Discount/blob/master/Images/designSketch.png)
+
 Interfaces
 ----------
 
