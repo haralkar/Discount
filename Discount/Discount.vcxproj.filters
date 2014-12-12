@@ -48,7 +48,7 @@
     <ClInclude Include="Order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StorageFactory.h">
+    <ClInclude Include="StorageHousing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -72,9 +72,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Order.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StorageFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

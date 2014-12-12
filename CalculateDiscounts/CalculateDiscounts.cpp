@@ -12,7 +12,7 @@
 #include "Rebate.h"
 #include "Order.h"
 
-#include "StorageFactory.h"
+#include "StorageHousing.h"
 
 using namespace std;
 

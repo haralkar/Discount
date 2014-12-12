@@ -4,7 +4,7 @@
 #include "Client.h"
 #include "Product.h"
 #include "Rebate.h"
-#include "StorageFactory.h"
+#include "StorageHousing.h"
 
 Order::Order()
 {

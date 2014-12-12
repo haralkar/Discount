@@ -5,7 +5,7 @@
 #include "Rebate.h"
 #include "LocalStorage.h"
 #include "DataFactory.h"
-#include "StorageFactory.h"
+#include "StorageHousing.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
